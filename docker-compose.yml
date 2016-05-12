@@ -1,15 +1,18 @@
 version: '2'
 services:
     elk-elasticsearch:
-        image: elasticsearch:2.3.2
+        image: elasticsearch:5.0.0
         ports:
             - "9200:9200"
             - "9300:9300"
+        environment:
+          #temporary fix for kibana alpha2
+            - ES_JAVA_OPTS=-Xms1g -Xmx1g
         # uncomment this section to have elasticsearch data persisted to a volume
         #volumes:
         #   - ./log-monitoring/log-data:/usr/share/elasticsearch/data
     elk-logstash:
-        image: logstash:2.3.2-1
+        image: logstash:5.0.0
         volumes:
             - ./log-monitoring/log-config/:/config-dir
         # for Windows, if it doesn't work, copy logstash.conf to a folder under C:\Users

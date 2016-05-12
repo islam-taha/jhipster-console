@@ -1,4 +1,4 @@
-FROM kibana:4.5.0
+FROM kibana:5.0.0
 
 RUN apt-get update
 RUN apt-get -y install curl
@@ -9,8 +9,6 @@ COPY dashboards /tmp/dashboards/
 COPY load.sh /tmp/load.sh
 RUN chmod +x /tmp/load.sh
 RUN sed -i -e 's/\r$//' /tmp/load.sh
-
-RUN kibana plugin --install elastic/timelion
 
 ENV SET_CONTAINER_TIMEZONE false
 ENV ELASTALERT_VERSION 0.0.80
@@ -56,5 +54,7 @@ RUN curl -Lo elastalert.tar.gz ${ELASTALERT_URL} && \
 COPY ./entrypoint.sh /tmp/entrypoint.sh
 RUN chmod +x /tmp/entrypoint.sh
 RUN sed -i -e 's/\r$//' /tmp/entrypoint.sh
+
+#RUN kibana-plugin install timelion
 
 CMD ["/tmp/entrypoint.sh"]
