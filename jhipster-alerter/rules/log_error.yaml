@@ -1,4 +1,4 @@
-es_host: jhipster-elasticsearch
+es_host: localhost
 es_port: 9200
 name: log_error
 type: frequency
@@ -16,4 +16,4 @@ alert:
 - "email"
 - "debug"
 email:
-- "elastalert@example.com"
+- "islamtaha53@gmail.com"
